@@ -1,7 +1,7 @@
 (defpackage :structure-ext.make-instance.spec
   (:use :cl :jingoh))
 (in-package :structure-ext.make-instance.spec)
-(setup :structure-ext.make-instance.spec)
+(setup :structure-ext.make-instance)
 
 (requirements-about make-instance)
 
@@ -9,6 +9,7 @@
 => FOO
 ,:lazy nil
 ,:ignore-signals warning
+,:stream nil
 
 #?(make-instance 'foo) :be-the foo
 

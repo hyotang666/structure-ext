@@ -1,7 +1,7 @@
 (defpackage :structure-ext.as-class.spec
   (:use :cl :jingoh :structure-ext.as-class))
 (in-package :structure-ext.as-class.spec)
-(setup :structure-ext.as-class.spec)
+(setup :structure-ext.as-class)
 
 (requirements-about DEFSTRUCT*)
 
@@ -10,13 +10,16 @@
 
 #+syntax
 (DEFSTRUCT* &body body) ; => result
+
 #?(defstruct* foo bar)
 => FOO
 ,:lazy nil
 ,:ignore-signals warning
+,:stream nil
+
 #?(make-foo) :be-the foo
 #?(foo-bar(make-foo :bar 0)) => 0
-#?(foo-p(make-foo)) => T
+#?(foo-p(make-foo)) :satisfies identity
 #?(let*((foo(make-foo :bar 0))
 	(copied(copy-foo foo)))
     (values (eq foo copied)

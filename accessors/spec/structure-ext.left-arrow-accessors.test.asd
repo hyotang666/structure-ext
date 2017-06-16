@@ -6,4 +6,4 @@
   :components
   ((:file "structure-ext.left-arrow-accessors"))
   :perform
-  (test-op (o c) (symbol-call :jingoh :examine)))
+  (test-op (o c) (symbol-call :jingoh :examine :structure-ext.left-arrow-accessors)))

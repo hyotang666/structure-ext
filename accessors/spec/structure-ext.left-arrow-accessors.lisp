@@ -1,7 +1,7 @@
 (defpackage :structure-ext.left-arrow-accessors.spec
   (:use :cl :jingoh :structure-ext.left-arrow-accessors))
 (in-package :structure-ext.left-arrow-accessors.spec)
-(setup :structure-ext.left-arrow-accessors.spec)
+(setup :structure-ext.left-arrow-accessors)
 
 (requirements-about DEFINE-LEFT-ARROW-ACCESSORS)
 
@@ -11,14 +11,18 @@
 => FOO
 ,:lazy nil
 ,:ignore-signals warning
+,:stream nil
 #?(define-left-arrow-accessors foo bar)
 => (BAR<=FOO)
 ,:test equal
 ,:ignore-signals warning
+,:stream nil
 #?(bar<=foo(make-foo :bar 0))
 => 0
 #?(bazz<=foo(make-foo :bazz 0))
-:signals undefined-function
+:signals (or undefined-function
+	     warning ; for ccl
+	     )
 
 #+syntax
 (DEFINE-LEFT-ARROW-ACCESSORS type &rest slot*) ; => result

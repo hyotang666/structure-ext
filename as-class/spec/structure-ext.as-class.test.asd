@@ -6,4 +6,4 @@
   :components
   ((:file "structure-ext.as-class"))
   :perform
-  (test-op (o c) (symbol-call :jingoh :examine)))
+  (test-op (o c) (symbol-call :jingoh :examine :structure-ext.as-class)))

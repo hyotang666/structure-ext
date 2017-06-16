@@ -6,4 +6,4 @@
   :components
   ((:file "structure-ext.make-instance"))
   :perform
-  (test-op (o c) (symbol-call :jingoh :examine)))
+  (test-op (o c) (symbol-call :jingoh :examine :structure-ext.make-instance)))
