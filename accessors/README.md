@@ -40,7 +40,8 @@ It is slot accessor or slot accessor style function name like CHAR-CODE.
 ## Proposal
 Using left arrow instead of hyphen is proposed.
 Do you think which code is easy to understand?
-```
+
+```lisp
 (code-char n)
 (char<=code n)
 ```
@@ -49,7 +50,8 @@ There is just small differences only.
 But in many cases, we don't write such low level code as toplevel.
 Usually we nests it.
 So how below?
-```
+
+```lisp
 (defun example1 (symbol)
   (let((name(package-name(symbol-pakcage symbol))))
     ...))
@@ -63,6 +65,7 @@ While reading code from left to right, the stack in your brain acting violently 
 There is no probrem with class, because we can specify arbitraly name as readers/writers/accessors, but structure.
 
 ## Usage
+
 ```lisp
 (defstruct foo bar)
 (DEFINE-LEFT-ARROW-ACCESSORS foo bar)

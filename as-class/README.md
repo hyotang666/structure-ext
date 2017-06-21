@@ -14,6 +14,7 @@ E.g. class is unreadable, but we can write reader macro.
 E.g. structure does not have shared slot, but we can emulate it with symbol-plist.
 
 So roughly, we can say 'if you need multiple inheritance, use class. otherwise structure. Because structure is fast.'
+
 ```Lisp
 (defstruct foo slot)
 (defclass bar()((slot :initarg :slot :accessor bar-slot)))
@@ -49,10 +50,13 @@ Option :type, :named, and :initial-offset are invalid in DEFSTRUCT\*
 
 ### Uncompleteness of copier
 The copy function which is made by DEFSTRUCT\* has some constraints.
+
 * Any slots has CL:ERROR initform.
 * All slots are not specified :READ-ONLY T.
+
 Because, copier evaluates `CL:MAKE-INSTANCE` without any initargs,
 then `CL:SETF` each slots.
+
 ## Usage
 
 ## From developer
