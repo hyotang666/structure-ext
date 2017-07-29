@@ -68,27 +68,26 @@
 	       ,form)))
 
   (defun enslot(slot conc-name) ; separated cause of huge.
-    (let((null(make-symbol "NULL")))
-      (labels((MAY-TYPE-SPEC(slot-options)
-		(let((spec(!(getf slot-options :type))))
-		  (when spec
-		    `(:TYPE ,spec))))
-	      (INITFORM(init-form)
-		`(:initform ,init-form))
-	      (INITARG(slot-name)
-		(intern(symbol-name slot-name) :keyword))
-	      (MAY-ACCESSORS(conc-name slot-name slot-options)
-		`(,(if(!(getf slot-options :read-only))
-		     :reader
-		     :accessor)
-		   ,(METHOD-NAME conc-name slot-name)))
-	      )
-	(destructuring-bind(slot-name &optional init-form . slot-options)slot
-	  `(,slot-name
-	     ,@(MAY-TYPE-SPEC slot-options)
-	     ,@(INITFORM init-form)
-	     :INITARG ,(INITARG slot-name)
-	     ,@(MAY-ACCESSORS conc-name slot-name slot-options)))))))
+    (labels((MAY-TYPE-SPEC(slot-options)
+	      (let((spec(!(getf slot-options :type))))
+		(when spec
+		  `(:TYPE ,spec))))
+	    (INITFORM(init-form)
+	      `(:initform ,init-form))
+	    (INITARG(slot-name)
+	      (intern(symbol-name slot-name) :keyword))
+	    (MAY-ACCESSORS(conc-name slot-name slot-options)
+	      `(,(if(!(getf slot-options :read-only))
+		   :reader
+		   :accessor)
+		 ,(METHOD-NAME conc-name slot-name)))
+	    )
+      (destructuring-bind(slot-name &optional init-form . slot-options)slot
+	`(,slot-name
+	   ,@(MAY-TYPE-SPEC slot-options)
+	   ,@(INITFORM init-form)
+	   :INITARG ,(INITARG slot-name)
+	   ,@(MAY-ACCESSORS conc-name slot-name slot-options))))))
 
 (defun method-name(conc-name slot-name)
   (intern(format nil "~@[~A~]~A" conc-name slot-name)))
