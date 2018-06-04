@@ -7,7 +7,7 @@
   :description "Method make-instance for construct structure."
   :depends-on(:closer-mop)
   :components((:file "make-instance")))
-;; Perform method below is added by JINGOH.GENERATOR.
-(defmethod perform
+
+(defmethod component-depends-on
            ((o test-op) (c (eql (find-system "structure-ext.make-instance"))))
-  (test-system :structure-ext.make-instance.test))
+  (append (call-next-method)'((test-op "structure-ext.make-instance.test"))))

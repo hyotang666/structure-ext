@@ -9,8 +9,8 @@
                                                               "README.md"))
   :depends-on(:resignal-bind :lambda-list)
   :components((:file "left-arrow-accessors")))
-;; Perform method below is added by JINGOH.GENERATOR.
-(defmethod perform
+
+(defmethod component-depends-on
            ((o test-op)
             (c (eql (find-system "structure-ext.left-arrow-accessors"))))
-  (test-system :structure-ext.left-arrow-accessors.test))
+  (append (call-next-method)'((test-op "structure-ext.left-arrow-accessors.test"))))

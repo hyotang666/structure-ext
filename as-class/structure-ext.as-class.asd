@@ -9,7 +9,7 @@
                                                                "README.md"))
   :depends-on(:resignal-bind :lambda-list :closer-mop :with-package :uiop)
   :components((:file "as-class")))
-;; Perform method below is added by JINGOH.GENERATOR.
-(defmethod perform
+
+(defmethod component-depends-on
            ((o test-op) (c (eql (find-system "structure-ext.as-class"))))
-  (test-system :structure-ext.as-class.test))
+  (append (call-next-method)'((test-op "structure-ext.as-class.test"))))
