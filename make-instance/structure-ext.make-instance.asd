@@ -5,7 +5,10 @@
   :version "0.0.0"
   :license "MIT"
   :description "Method make-instance for construct structure."
-  :depends-on(:closer-mop)
+  :depends-on
+  (
+   "closer-mop" ; wrapper for meta object protocols.
+   )
   :components((:file "make-instance")))
 
 (defmethod component-depends-on

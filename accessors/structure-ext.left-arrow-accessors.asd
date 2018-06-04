@@ -7,7 +7,11 @@
   :description "Slot accessor alias maker."
   :long-description #.(uiop:read-file-string(uiop:subpathname *load-pathname*
                                                               "README.md"))
-  :depends-on(:resignal-bind :lambda-list)
+  :depends-on
+  (
+   "resignal-bind"      ; condition handlings.
+   "lambda-list"        ; utilities for lambda list.
+   )
   :components((:file "left-arrow-accessors")))
 
 (defmethod component-depends-on

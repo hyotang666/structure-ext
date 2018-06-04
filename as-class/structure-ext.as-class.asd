@@ -7,7 +7,14 @@
   :description "Defstruct as defclass"
   :long-description #.(uiop:read-file-string (uiop:subpathname *load-pathname*
                                                                "README.md"))
-  :depends-on(:resignal-bind :lambda-list :closer-mop :with-package :uiop)
+  :depends-on
+  (
+   "resignal-bind"      ; condition handlings.
+   "lambda-list"        ; utilities for lambda list.
+   "closer-mop"         ; wrapper for meta object protocols.
+   "with-package"       ; using package temporarily.
+   "uiop"               ; utilities.
+   )
   :components((:file "as-class")))
 
 (defmethod component-depends-on
