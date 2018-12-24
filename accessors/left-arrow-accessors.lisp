@@ -1,5 +1,4 @@
 (defpackage :structure-ext.left-arrow-accessors(:use :cl :resignal-bind)
-  (:import-from :lambda-list #:Vars<=lambda-list)
   (:nicknames "LARAC")
   (:export
     ;; main api

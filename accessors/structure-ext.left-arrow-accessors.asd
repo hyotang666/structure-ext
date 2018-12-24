@@ -10,7 +10,6 @@
   :depends-on
   (
    "resignal-bind"      ; condition handlings.
-   "lambda-list"        ; utilities for lambda list.
    )
   :components((:file "left-arrow-accessors")))
 
