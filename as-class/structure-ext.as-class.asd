@@ -10,7 +10,7 @@
   :depends-on
   (
    "resignal-bind"      ; condition handlings.
-   "lambda-list"        ; utilities for lambda list.
+   "lambda-fiddle"      ; utilities for lambda list.
    "closer-mop"         ; wrapper for meta object protocols.
    "with-package"       ; using package temporarily.
    "uiop"               ; utilities.

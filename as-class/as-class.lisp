@@ -1,5 +1,4 @@
 (defpackage :structure-ext.as-class(:use :cl)
-  (:import-from :lambda-list #:Vars<=lambda-list)
   (:import-from :resignal-bind #:Resignal-bind)
   (:nicknames "AS-CLASS")
   (:export
@@ -141,7 +140,7 @@
 			     (MAKE-INSTANCE ',name ,@(CANONICALIZE (third constructor))))
 			  acc)))))
 	  (CANONICALIZE(lambda-list)
-	    (loop :for var :in (Vars<=lambda-list lambda-list)
+	    (loop :for var :in (lambda-fiddle:extract-all-lambda-vars lambda-list)
 		  :collect (intern(symbol-name var):keyword)
 		  :collect var))
 	  (DO-RETURN(acc)
