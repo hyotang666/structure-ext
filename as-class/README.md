@@ -63,6 +63,7 @@ then `CL:SETF` each slots.
 
 * Product's goal - already?
 * License - MIT
-* Developped with - CLISP
-* Tested with - 
+### Tested
+SBCL/1.4.15
+CCL/1.11.5
 
