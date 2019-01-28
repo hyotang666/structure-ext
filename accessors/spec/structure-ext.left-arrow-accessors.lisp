@@ -19,6 +19,8 @@
 ,:stream nil
 #?(bar<=foo(make-foo :bar 0))
 => 0
+,:around (locally(declare(notinline bar<=foo)) ; <--- SBCL needs.
+	   (call-body))
 #?(bazz<=foo(make-foo :bazz 0))
 :signals (or undefined-function
 	     warning ; for ccl
