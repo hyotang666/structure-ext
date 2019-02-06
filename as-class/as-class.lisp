@@ -5,7 +5,6 @@
     #:defstruct*
     ))
 (in-package :structure-ext.as-class)
-(named-readtables:in-readtable with-package:syntax)
 
 (defmacro defstruct* (&body body)
   (multiple-value-bind(name options documentation slots)(parse body)
@@ -180,9 +179,8 @@
 	  (DEF-FORM(cadr option)))
 	(DEF-FORM(method-name "COPY-" name))))))
 
-#@(:closer-mop #:slot-definition-name #:class-slots)
 (defun slots<=obj(obj)
-  (mapcar #'slot-definition-name (class-slots(class-of obj))))
+  (mapcar #'c2mop:slot-definition-name (c2mop:class-slots(class-of obj))))
 
 (defun may-generic(method &optional(lambda-list '(arg)))
   (when (or (null(fboundp method))
@@ -205,18 +203,16 @@
 	(DEF-FORM(method-name (conc-name nil name)
 			      "P"))))))
 
-#@(:closer-mop #:class-slots #:slot-definition-name #:class-finalized-p #:finalize-inheritance)
-
 (defun accessors(name options)
   (let((includes(collect-option :include options)))
     (when includes
       (uiop:while-collecting(ACC)
 	(labels((ENSURE-CLASS-SLOTS(class)
 		  (ENSURE-FINALIZE class)
-		  (class-slots class))
+		  (c2mop:class-slots class))
 		(ENSURE-FINALIZE(class)
-		  (unless(class-finalized-p class)
-		    (finalize-inheritance class)))
+		  (unless(c2mop:class-finalized-p class)
+		    (c2mop:finalize-inheritance class)))
 		(GENERIC?(generic)
 		  (when generic
 		    (ACC (car generic))))
@@ -238,4 +234,4 @@
 		)
 	  (dolist(include includes)
 	    (dolist(slot(ENSURE-CLASS-SLOTS(find-class(cadr include))))
-	      (COLLECT include(slot-definition-name slot)))))))))
+	      (COLLECT include(c2mop:slot-definition-name slot)))))))))

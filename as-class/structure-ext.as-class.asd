@@ -12,7 +12,6 @@
    "resignal-bind"      ; condition handlings.
    "lambda-fiddle"      ; utilities for lambda list.
    "closer-mop"         ; wrapper for meta object protocols.
-   "with-package"       ; using package temporarily.
    "uiop"               ; utilities.
    )
   :components((:file "as-class")))
