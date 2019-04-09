@@ -64,6 +64,6 @@ then `CL:SETF` each slots.
 * Product's goal - already?
 * License - MIT
 ### Tested
-SBCL/1.4.15
+SBCL/1.5.1
 CCL/1.11.5
 
