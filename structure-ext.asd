@@ -3,7 +3,7 @@
 
 (progn
   (defsystem :structure-ext
-             :version "0.0.0"
+             :version "0.0.1"
              :description "Tiny structure extensions"
              :author "Shinichi Sato"
              :licence "MIT"
@@ -14,4 +14,9 @@
 
   (defmethod component-depends-on((o test-op) (c (eql (find-system "structure-ext"))))
     (append (call-next-method) '((test-op . #0#))))
+  (defmethod operate :around ((o test-op)(c (eql (find-system "structure-ext")))
+                              &key ((:compile-print *compile-print*))
+                              ((:compile-verbose *compile-verbose*))
+                              &allow-other-keys)
+    (call-next-method))
   )
