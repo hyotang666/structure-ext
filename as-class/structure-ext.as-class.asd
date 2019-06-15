@@ -1,7 +1,7 @@
 ; vim: ft=lisp et
 (in-package :asdf)
 (defsystem :structure-ext.as-class
-  :version "0.0.0"
+  :version "0.0.1"
   :license "MIT"
   :author "Shinichi Sato"
   :description "Defstruct as defclass"
@@ -19,3 +19,8 @@
 (defmethod component-depends-on
            ((o test-op) (c (eql (find-system "structure-ext.as-class"))))
   (append (call-next-method)'((test-op "structure-ext.as-class.test"))))
+(defmethod operate :around(o (c (eql (find-system "structure-ext.as-class")))
+                             &key ((:compile-print *compile-print*))
+                             ((:compile-verbose *compile-verbose*))
+                             &allow-other-keys)
+  (call-next-method))
