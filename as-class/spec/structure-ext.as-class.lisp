@@ -26,8 +26,9 @@
 	(copied(copy-foo foo)))
     (values (eq foo copied)
 	    (foo-bar copied)))
-:multiple-value-satisfies #`(& (null $samep)
-			       (= 0 $copied-bar-value))
+:multiple-value-satisfies (lambda($samep $copied-bar-value)
+			    (& (null $samep)
+			       (= 0 $copied-bar-value)))
 
 ;;;; Arguments and Values:
 
