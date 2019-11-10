@@ -2,7 +2,7 @@
 (in-package :asdf)
 (defsystem :structure-ext.left-arrow-accessors
   :author "Shinichi Sato"
-  :version "0.0.2"
+  :version "0.0.3"
   :license "MIT"
   :description "Slot accessor alias maker."
   :long-description #.(uiop:read-file-string(uiop:subpathname *load-pathname*
@@ -13,13 +13,16 @@
    )
   :components((:file "left-arrow-accessors")))
 
-;; These forms below are added by JINGOH.GENERATOR.
+;;; These forms below are added by JINGOH.GENERATOR.
+;; Ensure in ASDF for pretty printings.
 (in-package :asdf)
+;; Enable testing via (asdf:test-system "structure-ext.left-arrow-accessors").
 (defmethod component-depends-on
            ((o test-op)
             (c (eql (find-system "structure-ext.left-arrow-accessors"))))
   (append (call-next-method)
           '((test-op "structure-ext.left-arrow-accessors.test"))))
+;; Enable passing parameter for JINGOH:EXAMINER via ASDF:TEST-SYSTEM.
 (defmethod operate :around
            ((o test-op)
             (c (eql (find-system "structure-ext.left-arrow-accessors")))
@@ -39,27 +42,11 @@
     (let ((args (jingoh.args keys)))
       (declare (special args))
       (call-next-method))))
+;; Enable importing spec documentations.
 (let ((system (find-system "jingoh.documentizer" nil)))
   (when (and system (not (featurep :clisp)))
     (load-system system)
-    (defmethod operate :around
-               ((o load-op)
-                (c (eql (find-system "structure-ext.left-arrow-accessors")))
-                &key)
-      (let* ((seen nil)
-             (*default-pathname-defaults*
-              (merge-pathnames "spec/" (system-source-directory c)))
-             (*macroexpand-hook*
-              (let ((outer-hook *macroexpand-hook*))
-                (lambda (expander form env)
-                  (if (not (typep form '(cons (eql defpackage) *)))
-                      (funcall outer-hook expander form env)
-                      (if (find (cadr form) seen :test #'string=)
-                          (funcall outer-hook expander form env)
-                          (progn
-                           (push (cadr form) seen)
-                           `(progn
-                             ,form
-                             ,@(symbol-call :jingoh.documentizer :importer
-                                            form)))))))))
-        (call-next-method)))))
+    (defmethod perform :after
+               ((o load-op) (c (eql (find-system "resignal-bind"))))
+      (dolist (c (component-children c))
+        (symbol-call :jingoh.documentizer :import* c)))))
