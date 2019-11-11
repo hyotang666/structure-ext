@@ -2,7 +2,7 @@
 (in-package :asdf)
 (defsystem :structure-ext.make-instance
   :author "Shinichi Sato"
-  :version "0.0.2"
+  :version "0.0.3"
   :license "MIT"
   :description "Method make-instance for construct structure."
   :depends-on
@@ -43,5 +43,4 @@
     (load-system system)
     (defmethod perform :after
                ((o load-op) (c (eql (find-system "resignal-bind"))))
-      (dolist (c (component-children c))
-        (symbol-call :jingoh.documentizer :import* c)))))
+      (symbol-call :jingoh.documentizer :import c))))

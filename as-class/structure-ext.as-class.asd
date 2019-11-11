@@ -1,7 +1,7 @@
 ; vim: ft=lisp et
 (in-package :asdf)
 (defsystem :structure-ext.as-class
-  :version "0.0.3"
+  :version "0.0.4"
   :license "MIT"
   :author "Shinichi Sato"
   :description "Defstruct as defclass"
@@ -48,5 +48,4 @@
     (load-system system)
     (defmethod perform :after
                ((o load-op) (c (eql (find-system "resignal-bind"))))
-      (dolist (c (component-children c))
-        (symbol-call :jingoh.documentizer :import* c)))))
+      (symbol-call :jingoh.documentizer :import c))))
