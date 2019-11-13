@@ -1,6 +1,7 @@
 ; vim: ft=lisp et
 (in-package :asdf)
 (defsystem :structure-ext.as-class.test
+  :version "0.0.0"
   :depends-on
   (:jingoh "structure-ext.as-class")
   :components

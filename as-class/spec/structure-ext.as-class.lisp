@@ -5,7 +5,7 @@
 (in-package :structure-ext.as-class.spec)
 (setup :structure-ext.as-class)
 
-(requirements-about DEFSTRUCT*)
+(requirements-about DEFSTRUCT* :doc-type function)
 
 ;;;; Description:
 ; Define class by defstruct syntax.

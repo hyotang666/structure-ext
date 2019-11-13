@@ -3,7 +3,7 @@
 (in-package :structure-ext.left-arrow-accessors.spec)
 (setup :structure-ext.left-arrow-accessors)
 
-(requirements-about DEFINE-LEFT-ARROW-ACCESSORS)
+(requirements-about DEFINE-LEFT-ARROW-ACCESSORS :doc-type function)
 
 ;;;; Description:
 ; Define accessor aliases.
@@ -51,7 +51,7 @@
 
 ;;;; Exceptional-Situations:
 
-(requirements-about MISSING-SYMBOL)
+(requirements-about MISSING-SYMBOL :doc-type type)
 
 ;;;; Description:
 ;;;; Class Precedence List: (case in SBCL)
