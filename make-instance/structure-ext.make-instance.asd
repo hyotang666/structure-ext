@@ -2,7 +2,7 @@
 (in-package :asdf)
 (defsystem :structure-ext.make-instance
   :author "Shinichi Sato"
-  :version "0.0.3"
+  :version "0.0.4"
   :license "MIT"
   :description "Method make-instance for construct structure."
   :depends-on
@@ -42,5 +42,5 @@
   (when (and system (not (featurep :clisp)))
     (load-system system)
     (defmethod perform :after
-               ((o load-op) (c (eql (find-system "resignal-bind"))))
+               ((o load-op) (c (eql (find-system "structure-ext.make-instance"))))
       (symbol-call :jingoh.documentizer :import c))))

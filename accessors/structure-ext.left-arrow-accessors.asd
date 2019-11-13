@@ -2,7 +2,7 @@
 (in-package :asdf)
 (defsystem :structure-ext.left-arrow-accessors
   :author "Shinichi Sato"
-  :version "0.0.4"
+  :version "0.0.5"
   :license "MIT"
   :description "Slot accessor alias maker."
   :long-description #.(uiop:read-file-string(uiop:subpathname *load-pathname*
@@ -47,5 +47,5 @@
   (when (and system (not (featurep :clisp)))
     (load-system system)
     (defmethod perform :after
-               ((o load-op) (c (eql (find-system "resignal-bind"))))
+               ((o load-op) (c (eql (find-system "structure-ext.left-arrow-accessors"))))
       (symbol-call :jingoh.documentizer :import c))))
