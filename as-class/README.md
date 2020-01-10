@@ -1,4 +1,4 @@
-# STRUCTURE-EXT.AS-CLASS 0.0.0 - Defclass by defstruct syntax.
+# STRUCTURE-EXT.AS-CLASS 0.0.6
 
 ## Current lisp world
 Common Lisp has strong structure and class.
@@ -64,6 +64,8 @@ then `CL:SETF` each slots.
 * Product's goal - already?
 * License - MIT
 ### Tested
-* SBCL/1.5.7
+* SBCL/2.0.0
 * CCL/1.11.5
+* CLISP/2.49
+* ECL/16.1.3
 

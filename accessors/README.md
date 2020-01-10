@@ -1,4 +1,4 @@
-# STRUCTURE-EXT.LEFT-ARROW-ACCESSORS 0.0.0 - Left arrow accessors
+# STRUCTURE-EXT.LEFT-ARROW-ACCESSORS 0.0.6
 
 ## introduction
 Any language has direction.
@@ -78,6 +78,7 @@ There is no probrem with class, because we can specify arbitraly name as readers
 * Product's goal - already?
 * License - MIT
 ### Tested
-* SBCL/1.5.7
+* SBCL/2.0.0
 * CCL/1.11.5
-
+* CLISP/2.49
+* ECL/16.1.3
