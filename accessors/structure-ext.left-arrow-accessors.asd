@@ -2,7 +2,7 @@
 (in-package :asdf)
 (defsystem :structure-ext.left-arrow-accessors
   :author "Shinichi Sato"
-  :version "0.0.6"
+  :version "0.0.7"
   :license "MIT"
   :description "Slot accessor alias maker."
   :long-description #.(uiop:read-file-string(uiop:subpathname *load-pathname*

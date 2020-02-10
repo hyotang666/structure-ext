@@ -1,7 +1,7 @@
 ; vim: ft=lisp et
 (in-package :asdf)
 (defsystem :structure-ext.as-class
-  :version "0.0.6"
+  :version "0.0.7"
   :license "MIT"
   :author "Shinichi Sato"
   :description "Defstruct as defclass"

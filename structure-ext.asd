@@ -3,7 +3,7 @@
 
 (progn
   (defsystem :structure-ext
-             :version "0.0.2"
+             :version "0.0.3"
              :description "Tiny structure extensions"
              :author "Shinichi Sato"
              :licence "MIT"
