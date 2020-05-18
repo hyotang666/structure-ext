@@ -20,7 +20,7 @@
 ,:stream nil
 
 #?(make-foo) :be-the foo
-#?(foo-bat (make-foo :bar 0)) => 0
+#?(foo-bar (make-foo :bar 0)) => 0
 #?(foo-p (make-foo)) :satisfies identity
 #?(let* ((foo (make-foo :bar 0))
          (copied (copy-foo foo)))
@@ -451,8 +451,8 @@
          (declare (ignore arg))
          nil)
        ;; These!
-       (defgeneric hoge-bat (arg))
-       (defmethod hoge-bat ((arg hoge))
+       (defgeneric hoge-bar (arg))
+       (defmethod hoge-bar ((arg hoge))
          (foo-bar arg))
        (defgeneric (setf hoge-bar) (new arg))
        (defmethod (setf hoge-bar) (new (arg hoge))
@@ -494,8 +494,8 @@
          (declare (ignore arg))
          nil)
        ;; These!
-       (defgeneric hoge-bat (arg))
-       (defmethod hoge-bat ((arg hoge))
+       (defgeneric hoge-bar (arg))
+       (defmethod hoge-bar ((arg hoge))
          (foo-bar arg))
        (defgeneric (setf hoge-bar) (new arg))
        (defmethod (setf hoge-bar) (new (arg hoge))
@@ -532,8 +532,8 @@
        (defmethod hoge-p (arg)
          (declare (ignore arg))
          nil)
-       (defgeneric hoge-bat (arg))
-       (defmethod hoge-bat ((arg hoge))
+       (defgeneric hoge-bar (arg))
+       (defmethod hoge-bar ((arg hoge))
          (foo-bar arg))
        (defgeneric (setf hoge-bar) (new arg))
        (defmethod (setf hoge-bar) (new (arg hoge))
