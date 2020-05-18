@@ -17,14 +17,14 @@
 ,:test equal
 ,:ignore-signals warning
 ,:stream nil
-#?(bar<=foo(make-foo :bar 0))
+#?(bar<=foo (make-foo :bar 0))
 => 0
-,:around (locally(declare(notinline bar<=foo)) ; <--- SBCL needs.
-	   (call-body))
-#?(bazz<=foo(make-foo :bazz 0))
+,:around (locally (declare (notinline bar<=foo)) ; <--- SBCL needs.
+           (call-body))
+#?(bazz<=foo (make-foo :bazz 0))
 :signals (or undefined-function
-	     warning ; for ccl
-	     )
+             warning ; for ccl
+             )
 
 #+syntax
 (DEFINE-LEFT-ARROW-ACCESSORS type &rest slot*) ; => result
