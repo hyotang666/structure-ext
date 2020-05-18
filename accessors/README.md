@@ -53,10 +53,10 @@ So how below?
 
 ```lisp
 (defun example1 (symbol)
-  (let((name(package-name(symbol-pakcage symbol))))
+  (let ((name (package-name (symbol-pakcage symbol))))
     ...))
 (defun example2 (symbol)
-  (let((name(name<=package(package<=symbol symbol))))
+  (let ((name (name<=package (package<=symbol symbol))))
     ...))
 ```
 In former case, relational part appears alternately.
@@ -69,7 +69,7 @@ There is no probrem with class, because we can specify arbitraly name as readers
 ```lisp
 (defstruct foo bar)
 (DEFINE-LEFT-ARROW-ACCESSORS foo bar)
-(bar<=foo(make-foo :bar 0))
+(bar<=foo (make-foo :bar 0))
 => 0
 ```
 
@@ -78,7 +78,7 @@ There is no probrem with class, because we can specify arbitraly name as readers
 * Product's goal - already?
 * License - MIT
 ### Tested
-* SBCL/2.0.0
-* CCL/1.11.5
+* SBCL/2.0.2
+* CCL/1.12
 * CLISP/2.49
-* ECL/16.1.3
+* ECL/20.4.24

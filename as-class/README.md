@@ -17,23 +17,23 @@ So roughly, we can say 'if you need multiple inheritance, use class. otherwise s
 
 ```Lisp
 (defstruct foo slot)
-(defclass bar()((slot :initarg :slot :accessor bar-slot)))
+(defclass bar () ((slot :initarg :slot :accessor bar-slot)))
 
 ;; constructor
-(time(dotimes(x 1000)(make-foo :slot 0)))
+(time (dotimes (x 1000) (make-foo :slot 0)))
 => 299,098 processor cycles
    16,376 bytes consed
-(time(dotimes(x 1000)(make-instance 'bar :slot 0)))
+(time (dotimes (x 1000) (make-instance 'bar :slot 0)))
 => 19,777,048 processor cycles
    187,400 bytes consed
 ;; 66 times faster, 11.5 times less consed.
 
 ;; accessor
-(let((s(make-foo :slot 0)))
-  (time(dotimes(x 1000)(foo-slot s))))
+(let ((s (make-foo :slot 0)))
+  (time (dotimes (x 1000) (foo-slot s))))
 => 26,771 processor cycles
-(let((c(make-instance 'bar :slot 0)))
-  (time(dotimes(x 1000)(bar-slot c))))
+(let ((c (make-instance 'bar :slot 0)))
+  (time (dotimes (x 1000) (bar-slot c))))
 => 143,488 processor cycles
 ;; 5.3 times faster.
 ```
@@ -64,8 +64,8 @@ then `CL:SETF` each slots.
 * Product's goal - already?
 * License - MIT
 ### Tested
-* SBCL/2.0.0
-* CCL/1.11.5
+* SBCL/2.0.2
+* CCL/1.12
 * CLISP/2.49
-* ECL/16.1.3
+* ECL/20.4.24
 
