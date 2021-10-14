@@ -4,7 +4,7 @@
 
 (in-package :structure-ext.make-instance)
 
-#+(or sbcl)
+#+(or sbcl allegro)
 (defmethod make-instance :around ((type structure-class) &rest args)
   (loop :with instance = (copy-structure (closer-mop:class-prototype type))
         :for slot :in (closer-mop:class-slots type)
@@ -12,5 +12,8 @@
         :do (setf (slot-value instance name)
                     (or (getf args (intern (symbol-name name) :keyword))
                         (funcall
-                          (closer-mop:slot-definition-initfunction slot))))
+                          (handler-case
+                              (closer-mop:slot-definition-initfunction slot)
+                            (error ()
+                              (constantly nil))))))
         :finally (return instance)))
