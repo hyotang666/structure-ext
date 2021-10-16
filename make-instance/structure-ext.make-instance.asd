@@ -2,7 +2,7 @@
 (in-package :asdf)
 (defsystem :structure-ext.make-instance
   :author "Shinichi Sato"
-  :version "0.0.7"
+  :version "0.1.0"
   :license "MIT"
   :description "Method make-instance for construct structure."
   :depends-on
