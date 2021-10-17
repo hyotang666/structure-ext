@@ -4,7 +4,7 @@
 
 (in-package :structure-ext.make-instance)
 
-#+(or sbcl allegro clasp)
+#+(or sbcl allegro clasp cmu)
 (defmethod make-instance :around ((type structure-class) &rest args)
   (loop :with instance = (copy-structure (closer-mop:class-prototype type))
         :for slot :in (closer-mop:class-slots type)
