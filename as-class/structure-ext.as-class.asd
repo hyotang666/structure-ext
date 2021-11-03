@@ -1,7 +1,7 @@
 ; vim: ft=lisp et
 (in-package :asdf)
 (defsystem :structure-ext.as-class
-  :version "0.0.7"
+  :version "0.0.8"
   :license "MIT"
   :author "Shinichi Sato"
   :description "Defstruct as defclass"
@@ -9,7 +9,6 @@
                                                                "README.md"))
   :depends-on
   (
-   "resignal-bind"      ; condition handlings.
    "lambda-fiddle"      ; utilities for lambda list.
    "closer-mop"         ; wrapper for meta object protocols.
    "uiop"               ; utilities.

@@ -1,6 +1,5 @@
 (defpackage :structure-ext.as-class
   (:use :cl)
-  (:import-from :resignal-bind #:resignal-bind)
   (:nicknames "AS-CLASS")
   (:export #:defstruct*))
 
@@ -12,7 +11,8 @@
     (check options)
     `(progn
       (defclass ,name ,(super-classes options) ,(slots slots options name)
-                ,@(may-initargs options) ,@(may-documentation documentation))
+        ,@(may-initargs options)
+        ,@(may-documentation documentation))
       ,@(constructors name options)
       ,@(print-function name options)
       ,@(copier name options)
@@ -60,31 +60,26 @@
         (cadr conc-name)
         (format nil "~A-" class-name))))
 
-(macrolet ((! (form)
-             `(resignal-bind ((error () 'simple-error
-                                :format-control "Missng initform.~%~S"
-                                :format-arguments (list slot)))
-                ,form)))
-  (defun enslot (slot conc-name) ; separated cause of huge.
-    (labels ((may-type-spec (slot-options)
-               (let ((spec (! (getf slot-options :type))))
-                 (when spec
-                   `(:type ,spec))))
-             (initform (init-form)
-               `(:initform ,init-form))
-             (initarg (slot-name)
-               (intern (symbol-name slot-name) :keyword))
-             (may-accessors (conc-name slot-name slot-options)
-               `(,(if (! (getf slot-options :read-only))
-                      :reader
-                      :accessor)
-                 ,(method-name conc-name slot-name))))
-      (destructuring-bind
-          (slot-name &optional init-form . slot-options)
-          slot
-        `(,slot-name ,@(may-type-spec slot-options) ,@(initform init-form)
-          :initarg ,(initarg slot-name)
-          ,@(may-accessors conc-name slot-name slot-options))))))
+(defun enslot (slot conc-name) ; separated cause of huge.
+  (labels ((may-type-spec (slot-options)
+             (let ((spec (getf slot-options :type)))
+               (when spec
+                 `(:type ,spec))))
+           (initform (init-form)
+             `(:initform ,init-form))
+           (initarg (slot-name)
+             (intern (symbol-name slot-name) :keyword))
+           (may-accessors (conc-name slot-name slot-options)
+             `(,(if (getf slot-options :read-only)
+                    :reader
+                    :accessor)
+               ,(method-name conc-name slot-name))))
+    (destructuring-bind
+        (slot-name &optional init-form . slot-options)
+        slot
+      `(,slot-name ,@(may-type-spec slot-options) ,@(initform init-form)
+        :initarg ,(initarg slot-name)
+        ,@(may-accessors conc-name slot-name slot-options)))))
 
 (defun method-name (conc-name slot-name)
   (intern (format nil "~@[~A~]~A" conc-name slot-name)))
@@ -188,8 +183,7 @@
 (defun may-generic (method &optional (lambda-list '(arg)))
   (when (or (null (fboundp method))
             (not (typep (fdefinition method) 'generic-function)))
-    `((defgeneric ,method
-          ,lambda-list))))
+    `((defgeneric ,method ,lambda-list))))
 
 (defun predicate (name options)
   (flet ((def-form (method)
@@ -234,8 +228,8 @@
                          `(defmethod (setf ,method-name) (#1=#:new (#0# ,name))
                             (setf (,super-accessor #0#) #1#))))))
                  (has-setter? (super-accessor)
-                   (values
-                     (ignore-errors (fdefinition `(setf ,super-accessor))))))
+                   (values (ignore-errors
+                            (fdefinition `(setf ,super-accessor))))))
           (dolist (include includes)
             (dolist (slot (ensure-class-slots (find-class (cadr include))))
               (collect include (c2mop:slot-definition-name slot)))))))))
