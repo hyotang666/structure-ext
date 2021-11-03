@@ -9,7 +9,6 @@
                                                               "README.md"))
   :depends-on
   (
-   "resignal-bind"      ; condition handlings.
    )
   :components((:file "left-arrow-accessors")))
 

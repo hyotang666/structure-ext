@@ -1,5 +1,5 @@
 (defpackage :structure-ext.left-arrow-accessors
-  (:use :cl :resignal-bind)
+  (:use :cl)
   (:nicknames "LARAC")
   (:export ;; main api
            #:define-left-arrow-accessors
